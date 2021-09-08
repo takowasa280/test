@@ -95,7 +95,7 @@ def handle_content_message(event):
     line_bot_api.push_message(developer_id,
         TextSendMessage(text=filepath))
     line_bot_api.push_message(developer_id,
-        TextSendMessage(text=dist_name))
+        TextSendMessage(text=dist_path))
     print(filepath)
 
     # 送信された画像をモデルで判別する
