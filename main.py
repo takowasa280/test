@@ -54,6 +54,10 @@ def callback():
 # テキストメッセージが送信されたときの処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
+    line_bot_api.push_message(developer_id,
+        TextSendMessage(text="表示名:{}\nユーザID:{}\n画像のURL:{}\nステータスメッセージ:{}"\
+        .format(profile.display_name, profile.user_id, profile.picture_url, profile.status_message)))
     text = event.message.text
     line_bot_api.push_message(developer_id,
         TextSendMessage(text=text))
