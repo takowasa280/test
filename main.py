@@ -42,7 +42,6 @@ def callback():
     app.logger.info("Request body: " + body)
     print("----1----")
     print(body)
-    print(body.events.message.id)
     print("----2----")
     try:
         handler.handle(body, signature)
@@ -77,6 +76,7 @@ def handle_content_message(event):
     print(event.message.id)
     print(event.message.type)
     print(event.message)
+    print(static_tmp_path)
     print("----4----")
     line_bot_api.push_message(developer_id,
         TextSendMessage(text=event.message.id))
