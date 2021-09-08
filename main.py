@@ -75,7 +75,7 @@ def handle_content_message(event):
     print("----3----")
     print(event.message.id)
     print(event.message.type)
-    print(event.message.text)
+    print(event.message)
     print("----4----")
     #line_bot_api.push_message(developer_id,TextSendMessage(text=event.message.text))
     message_content = line_bot_api.get_message_content(event.message.id)
