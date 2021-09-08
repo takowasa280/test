@@ -74,7 +74,7 @@ model = load_model('my_model.h5') # 学習済みモデルをロードする
 def handle_content_message(event):
     print(event.message)
     line_bot_api.push_message(developer_id,
-    TextSendMessage(text=event.message)
+    TextSendMessage(text=event.message))
     message_content = line_bot_api.get_message_content(event.message.id)
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix="jpg" + '-', delete=False) as tf:
         for chunk in message_content.iter_content():
