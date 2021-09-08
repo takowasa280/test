@@ -42,6 +42,7 @@ def callback():
     app.logger.info("Request body: " + body)
     print("----1----")
     print(body)
+    print(body.events.message.id)
     print("----2----")
     try:
         handler.handle(body, signature)
