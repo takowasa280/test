@@ -37,6 +37,7 @@ def callback():
 def handle_message(event):
     text = event.message.text
     
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='メッセージを受信しました。'))
     if text == 'こんにちは':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='こんにちは'))
     elif text == 'こんばんは':
