@@ -13,8 +13,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('QElyIoVYJDHrus2KnIl1k6AZZ7Pv6YHy23aV0ubE9d3M/QH1KXKDYcZMIB2UcNSdJmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcoH3WQPE8tTxCHnLcI8LO7U21Pxd94C48KF6zWPwmsYNAdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
-handler = WebhookHandler('1639949a449f38d08cacc3adffc468d6')  # Channel Secretを入れてください
+line_bot_api = LineBotApi('8WQEJIC6sGY0SBOiU6mpU3WgKs+7XBaXUQEp//VPVjhz/LujJ1islG0y+YkrFqgFJmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcp20d3ziOi0NdrBKXjK6p0q0DbbF5FKyyk8fTcyNK62vAdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
+handler = WebhookHandler('6a6cfe47dab52f783d04316aa4c4a68d')  # Channel Secretを入れてください
 developer_id = "Ub803fb2469db4906a1f50f045576dfaf"  # あなたのUser IDを入れてください
 
 
