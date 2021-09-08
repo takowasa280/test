@@ -15,7 +15,7 @@ from linebot.models import (
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('LlOfmzKytr33yX6paKp7RTq0sh7Z2ZMnKukJ+HrtWzgHoCA3aAyl12n+5A1nFpk3JmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcoSANGBV3lGsexNMSICcNRfuqSeqTM5Zhw/XQ1HgavZrwdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
-handler = WebhookHandler('b9e6104f3fd792eff458e036aa23540c')  # Channel Secretを入れてください
+handler = WebhookHandler('1639949a449f38d08cacc3adffc468d6')  # Channel Secretを入れてください
 
 
 @app.route("/callback", methods=['POST'])
