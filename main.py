@@ -9,7 +9,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, ImageMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
@@ -36,13 +36,18 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    if text == 'こんにちは':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='こんにちは'))
-    elif text == 'こんばんは':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='こんばんは'))
+    if text == 'おはよう':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='おはよう！'))
+    elif text == 'こんにちは':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='こんにちは！')) 
     else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='わからない..'))
-
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='メッセージを受信しました。')) 
 
 # 画像メッセージが送信されたときの処理
 @handler.add(MessageEvent, message=ImageMessage)
@@ -50,6 +55,7 @@ def handle_message(event):
      line_bot_api.reply_message(
          event.reply_token,
          TextSendMessage(text='画像を受信しました。')) 
+        
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
