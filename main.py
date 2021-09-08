@@ -14,7 +14,7 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('s7sejbAa5Qb66to6oDKwABjhqJ29MkLaU33S8XxUqGOLqd6DUOU6lqdjqXcDLkbRJmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcoI5GTT9GJxedtXMDHdFTB3JGMcBKN2taNZfdz4bQ6/KgdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
+line_bot_api = LineBotApi('LlOfmzKytr33yX6paKp7RTq0sh7Z2ZMnKukJ+HrtWzgHoCA3aAyl12n+5A1nFpk3JmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcoSANGBV3lGsexNMSICcNRfuqSeqTM5Zhw/XQ1HgavZrwdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
 handler = WebhookHandler('b9e6104f3fd792eff458e036aa23540c')  # Channel Secretを入れてください
 
 
