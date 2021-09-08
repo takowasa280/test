@@ -81,8 +81,6 @@ def handle_content_message(event):
     print(event.message)
     print(static_tmp_path)
     print("----4----")
-    line_bot_api.push_message(developer_id,
-        TextSendMessage(text=static_tmp_path+"/"))
     message_content = line_bot_api.get_message_content(event.message.id)
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix="jpg" + '-', delete=False) as tf:
         for chunk in message_content.iter_content():
@@ -94,10 +92,7 @@ def handle_content_message(event):
     os.rename(tempfile_path, dist_path)
 
     filepath = os.path.join('static', 'tmp', dist_name) # ユーザから送信された画像のパスが格納されている
-    line_bot_api.push_message(developer_id,
-        TextSendMessage(text=filepath))
-    line_bot_api.push_message(developer_id,
-        TextSendMessage(text=dist_path))
+
     print(filepath)
 
     # 送信された画像をモデルで判別する
