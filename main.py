@@ -1,8 +1,8 @@
+# main.py
 import os
 import errno
 import tempfile
 from flask import Flask, request, abort
-
 from linebot import (
     LineBotApi, WebhookHandler
 )
