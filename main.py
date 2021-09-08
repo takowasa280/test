@@ -86,7 +86,9 @@ def handle_content_message(event):
         for chunk in message_content.iter_content():
             tf.write(chunk)
             tempfile_path = tf.name
-    print(tempfile_path)
+            print(tempfile_path)
+            line_bot_api.push_message(developer_id,
+                TextSendMessage(text=tempfile_path))
 
     dist_path = tempfile_path + '.' + "jpg"
     dist_name = os.path.basename(dist_path)
