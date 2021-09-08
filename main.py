@@ -46,6 +46,12 @@ def callback():
 # テキストメッセージが送信されたときの処理
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    print("----1----")
+    print(body)
+    print("----2----")
     text = event.message.text
 
     if text == 'おはよう':
