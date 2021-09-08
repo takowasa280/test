@@ -77,7 +77,7 @@ def handle_content_message(event):
     print(event.message.type)
     print(event.message.text)
     print("----4----")
-    line_bot_api.push_message(developer_id,TextSendMessage(text=event.message.text))
+    #line_bot_api.push_message(developer_id,TextSendMessage(text=event.message.text))
     message_content = line_bot_api.get_message_content(event.message.id)
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix="jpg" + '-', delete=False) as tf:
         for chunk in message_content.iter_content():
