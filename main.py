@@ -87,14 +87,14 @@ def handle_content_message(event):
             tf.write(chunk)
             tempfile_path = tf.name
             print(tempfile_path)
-            line_bot_api.push_message(developer_id,
-                TextSendMessage(text=tempfile_path))
 
     dist_path = tempfile_path + '.' + "jpg"
     dist_name = os.path.basename(dist_path)
     os.rename(tempfile_path, dist_path)
 
     filepath = os.path.join('static', 'tmp', dist_name) # ユーザから送信された画像のパスが格納されている
+    line_bot_api.push_message(developer_id,
+        TextSendMessage(text=filepath))
 
     # 送信された画像をモデルで判別する
     img = image.load_img(filepath, target_size=(32,32)) # 送信された画像を読み込み、リサイズする
