@@ -10,6 +10,9 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, ImageMessage, TextSendMessage, FollowEvent
 )
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.preprocessing import image
+import numpy as np
 
 app = Flask(__name__)
 
