@@ -18,16 +18,6 @@ handler = WebhookHandler('1639949a449f38d08cacc3adffc468d6')  # Channel Secret�
 developer_id = "Ub803fb2469db4906a1f50f045576dfaf"  # あなたのUser IDを入れてください
 
 
-# ユーザから送信された画像を保存するディレクトリを作成
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
-try:
-    os.makedirs(static_tmp_path)
-except OSError as exc:
-    if exc.errno == errno.EEXIST and os.path.isdir(static_tmp_path):
-        pass
-    else:
-        raise
-
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -62,32 +52,11 @@ def handle_message(event):
             TextSendMessage(text='メッセージを受信しました。')) 
 
 # 画像メッセージが送信されたときの処理
-model = load_model('my_model.h5') # 学習済みモデルをロードする
 @handler.add(MessageEvent, message=ImageMessage)
-def handle_content_message(event):
-    message_content = line_bot_api.get_message_content(event.message.id)
-    with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix="jpg" + '-', delete=False) as tf:
-        for chunk in message_content.iter_content():
-            tf.write(chunk)
-            tempfile_path = tf.name
-
-    dist_path = tempfile_path + '.' + "jpg"
-    dist_name = os.path.basename(dist_path)
-    os.rename(tempfile_path, dist_path)
-
-    filepath = os.path.join('static', 'tmp', dist_name) # ユーザから送信された画像のパスが格納されている
-
-    # 送信された画像をモデルで判別する
-    img = image.load_img(filepath, target_size=(32,32)) # 送信された画像を読み込み、リサイズする
-    img = image.img_to_array(img) # 画像データをndarrayに変換する
-    data = np.array([img])
-    result = model.predict(data) # 分類する
-    predicted = result.argmax()
-
-    class_label = ["飛行機","自動車","鳥","猫","鹿","犬","蛙","馬","船","トラック"]
-    pred_answer = "これは" + class_label[predicted] + "です"
-
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text= pred_answer))
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='画像を受信しました。')) 
 
 # フォローイベント時の処理
 @handler.add(FollowEvent)
