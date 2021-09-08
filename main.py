@@ -42,6 +42,7 @@ def callback():
     app.logger.info("Request body: " + body)
     print("----1----")
     print(body)
+    print(static_tmp_path)
     print("----2----")
     try:
         handler.handle(body, signature)
