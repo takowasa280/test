@@ -45,6 +45,13 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='わからない..'))
 
 
+# 画像メッセージが送信されたときの処理
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_message(event):
+     line_bot_api.reply_message(
+         event.reply_token,
+         TextSendMessage(text='画像を受信しました。')) 
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
     app.run(host ='0.0.0.0',port = port)
