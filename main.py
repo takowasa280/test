@@ -70,7 +70,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text='完全一致の時は1、部分一致の時は2を入力してねぇ'))
-        df2 = pd.DataFrame([[text ,'text', 1,  "aa"]],columns=['input', 'type', 'option','output'])
+        df2 = pd.DataFrame([[text] ,['text'], [1],  ["aa"]],columns=['input', 'type', 'option','output'])
         df3 = df.append(df2)
         df3.to_csv("text.csv")
         print(df)
