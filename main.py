@@ -74,14 +74,12 @@ def handle_message(event):
         df3 = df.append(df2)
         df3.to_csv("text.csv")
         print(df)
-        @handler.add(MessageEvent, message=TextMessage)
-        def handle_message(event):
-            text2 = event.message.text
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=text2))
-            text3 = event.message.text
-            print(text2,text3)
+        text2 = event.message.text
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=text2))
+        text3 = event.message.text
+        print(text2,text3)
 
     # 完全一致調査
     df_out = df[(df["input"]==text)]
