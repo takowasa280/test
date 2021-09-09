@@ -20,8 +20,8 @@ import pandas as pd
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('8WQEJIC6sGY0SBOiU6mpU3WgKs+7XBaXUQEp//VPVjhz/LujJ1islG0y+YkrFqgFJmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcp20d3ziOi0NdrBKXjK6p0q0DbbF5FKyyk8fTcyNK62vAdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
-handler = WebhookHandler('6a6cfe47dab52f783d04316aa4c4a68d')  # Channel Secretを入れてください
+line_bot_api = LineBotApi('DxMFTio1R1+nVJajDNbnqYFUl7KyRHySWX6WKCOmsw9DUe9LqMkqR0tbfn4YXKn8JmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcrIah6BRIcczrJGEjiarq+WTzaGJlKHoz4wEPjWrUX5GAdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
+handler = WebhookHandler('767b4a9770bbca370dfe01e10ddbd274')  # Channel Secretを入れてください
 developer_id = "Ub803fb2469db4906a1f50f045576dfaf"  # あなたのUser IDを入れてください
 
 df = pd.read_csv("text.csv")
