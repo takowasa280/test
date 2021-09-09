@@ -1,7 +1,9 @@
 # main.py
 import os
+import json
 import errno
 import tempfile
+import psycopg2
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -20,9 +22,23 @@ import pandas as pd
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('DxMFTio1R1+nVJajDNbnqYFUl7KyRHySWX6WKCOmsw9DUe9LqMkqR0tbfn4YXKn8JmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcrIah6BRIcczrJGEjiarq+WTzaGJlKHoz4wEPjWrUX5GAdB04t89/1O/w1cDnyilFU=')  # アクセストークンを入れてください
-handler = WebhookHandler('767b4a9770bbca370dfe01e10ddbd274')  # Channel Secretを入れてください
-developer_id = "Ub803fb2469db4906a1f50f045576dfaf"  # あなたのUser IDを入れてください
+ABS_PATH = os.path.dirname(os.path.abspath(sys.argv[0]))
+with open(ABS_PATH+'/conf.json', 'r') as f:
+    CONF_DATA = json.load(f)
+
+CHANNEL_SECRET = CONF_DATA['CHANNEL_SECRET']
+CHANNEL_ACCESS_TOKEN = CONF_DATA['CHANNEL_ACCESS_TOKEN']
+DEVELOPER_ID = CONF_DATA['DEVELOPER_ID']
+REMOTE_HOST = CONF_DATA['REMOTE_HOST']
+REMOTE_DB_NAME = CONF_DATA['REMOTE_DB_NAME']
+REMOTE_DB_USER = CONF_DATA['REMOTE_DB_USER']
+REMOTE_DB_PASS = CONF_DATA['REMOTE_DB_PASS']
+REMOTE_DB_TB = CONF_DATA['REMOTE_DB_TB']
+
+
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)  # アクセストークンを入れてください
+handler = WebhookHandler(CHANNEL_SECRET)  # Channel Secretを入れてください
+developer_id = DEVELOPER_ID  # あなたのUser IDを入れてください
 
 
 # ユーザから送信された画像を保存するディレクトリを作成
@@ -60,6 +76,35 @@ def handle_message(event):
     line_bot_api.push_message(developer_id,
         TextSendMessage(text="表示名:{}\nユーザID:{}\n画像のURL:{}\nステータスメッセージ:{}"\
         .format(profile.display_name, profile.user_id, profile.picture_url, profile.status_message)))
+
+
+    reply_token = event.reply_token
+    user_id = event.source.user_id
+    profiles = line_bot_api.get_profile(user_id=user_id)
+    display_name = profiles.display_name
+    picture_url = profiles.picture_url
+    status_message = profiles.status_message
+    # DBへの保存
+    try:
+        conn = MySQLdb.connect(user=REMOTE_DB_USER, passwd=REMOTE_DB_PASS, host=REMOTE_HOST, db=REMOTE_DB_NAME)
+        c = conn.cursor()
+        sql = "SELECT `id` FROM`"+REMOTE_DB_TB+"` WHERE `user_id` = '"+user_id+"';"
+        c.execute(sql)
+        ret = c.fetchall()
+        if len(ret) == 0:
+            sql = "INSERT INTO `"+REMOTE_DB_TB+"` (`user_id`, `display_name`, `picture_url`, `status_message`, `status`)\
+              VALUES ('"+user_id+"', '"+str(display_name)+"', '"+str(picture_url)+"', '"+str(status_message)+"', 1);"
+        elif len(ret) == 1:
+            sql = "UPDATE `"+REMOTE_DB_TB+"` SET `display_name` = '"+str(display_name)+"', `picture_url` = '"+str(picture_url)+"',\
+            `status_message` = '"+str(status_message)+"', `status` = '1' WHERE `user_id` = '"+user_id+"';"
+        c.execute(sql)
+        conn.commit()
+    finally:
+        conn.close()
+        c.close()
+
+        
+
     text = event.message.text
     line_bot_api.push_message(developer_id,
         TextSendMessage(text=text))
