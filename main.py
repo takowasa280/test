@@ -134,7 +134,7 @@ def handle_follow(event):
     
     # 友だち追加したユーザにメッセージを送信
     line_bot_api.reply_message(      
-        event.reply_token, TextSendMessage(text='友だち追加ありがとうございます'))
+        event.reply_token, TextSendMessage(text='友だち追加ありがとねぇ'))
         
         
 
