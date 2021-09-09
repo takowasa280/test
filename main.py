@@ -119,7 +119,7 @@ def handle_content_message(event):
     predicted = result.argmax()
 
     class_label = ["飛行機","自動車","鳥","猫","鹿","犬","蛙","馬","船","トラック"]
-    pred_answer = "これは" + class_label[predicted] + "です"
+    pred_answer = "これは" + class_label[predicted] + "だねぇ"
 
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text= pred_answer))
 
