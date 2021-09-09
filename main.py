@@ -24,7 +24,6 @@ line_bot_api = LineBotApi('DxMFTio1R1+nVJajDNbnqYFUl7KyRHySWX6WKCOmsw9DUe9LqMkqR
 handler = WebhookHandler('767b4a9770bbca370dfe01e10ddbd274')  # Channel Secretを入れてください
 developer_id = "Ub803fb2469db4906a1f50f045576dfaf"  # あなたのUser IDを入れてください
 
-df = pd.read_csv("text.csv")
 
 # ユーザから送信された画像を保存するディレクトリを作成
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
@@ -65,6 +64,7 @@ def handle_message(event):
     line_bot_api.push_message(developer_id,
         TextSendMessage(text=text))
 
+    df = pd.read_csv("text.csv")
     ### 言葉を覚える ###
     if text == '言葉覚えて':
         line_bot_api.reply_message(
