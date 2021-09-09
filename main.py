@@ -65,15 +65,27 @@ def handle_message(event):
     if text == 'おはよう':
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='おはよう！'))
+            TextSendMessage(text='おはよ〜'))
     elif text == 'こんにちは':
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='こんにちは！')) 
+            TextSendMessage(text='疲れたね〜')) 
+    elif ('さわさわ' in text) | ('澤部' in text):
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='呼んだぁ？？')) 
+    elif ('マイクロマジック' in text) :
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='マイクロマジックなんかないんだよ!!')) 
+    elif ('ターン' in text) :
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='楽しみにしててねぇ')) 
     else:
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='メッセージを受信しました。')) 
+            TextSendMessage(text='なんでぇ??')) 
 
 # 画像メッセージが送信されたときの処理
 model = load_model('my_model.h5') # 学習済みモデルをロードする
