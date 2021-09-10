@@ -1,0 +1,13 @@
+{
+    "CHANNEL_SECRET": "767b4a9770bbca370dfe01e10ddbd274",
+    "CHANNEL_ACCESS_TOKEN": "DxMFTio1R1+nVJajDNbnqYFUl7KyRHySWX6WKCOmsw9DUe9LqMkqR0tbfn4YXKn8JmuaHYw5WkwJKTg4aOhXoCN3IfxqaDKOo8C2iegnlcrIah6BRIcczrJGEjiarq+WTzaGJlKHoz4wEPjWrUX5GAdB04t89/1O/w1cDnyilFU=",
+    "DEVELOPER_ID": "Ub803fb2469db4906a1f50f045576dfaf",
+    
+    "REMOTE_HOST": "ec2-54-147-126-173.compute-1.amazonaws.com",
+    "REMOTE_DB_NAME": "dbrh250o0qj33e",
+    "REMOTE_DB_USER": "qqbuwounsurfks",
+    "REMOTE_DB_PASS": "4a13b6aba5de21da1af749bf740c67c4066e13437215a917995698c761ad0a3e",
+    "REMOTE_DB_TB": "データベースのテーブル名",
+    
+    "COMMENT": "パーミッションは600とかにしましょう"
+    }
