@@ -1,5 +1,5 @@
 # main.py
-import os,random
+import os,random,sys
 import json
 import errno
 import tempfile
@@ -15,6 +15,7 @@ from linebot.models import (
     MessageEvent, TextMessage, ImageMessage, TextSendMessage, FollowEvent
 )
 from tensorflow.keras.models import Sequential, load_model
+
 from tensorflow.keras.preprocessing import image
 import numpy as np
 import pandas as pd
