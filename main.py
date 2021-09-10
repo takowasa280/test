@@ -3,7 +3,7 @@ import os,random
 import json
 import errno
 import tempfile
-import psycopg2
+#import psycopg2
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
