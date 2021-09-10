@@ -77,7 +77,7 @@ def handle_message(event):
         TextSendMessage(text="表示名:{}\nユーザID:{}\n画像のURL:{}\nステータスメッセージ:{}"\
         .format(profile.display_name, profile.user_id, profile.picture_url, profile.status_message)))
 
-
+    """
     #reply_token = event.reply_token
     user_id = event.source.user_id
     profiles = line_bot_api.get_profile(user_id=user_id)
@@ -102,6 +102,7 @@ def handle_message(event):
     finally:
         conn.close()
         c.close()
+    """
 
 
 
