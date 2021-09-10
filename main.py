@@ -78,7 +78,7 @@ def handle_message(event):
         .format(profile.display_name, profile.user_id, profile.picture_url, profile.status_message)))
 
 
-    reply_token = event.reply_token
+    #reply_token = event.reply_token
     user_id = event.source.user_id
     profiles = line_bot_api.get_profile(user_id=user_id)
     display_name = profiles.display_name
@@ -103,7 +103,7 @@ def handle_message(event):
         conn.close()
         c.close()
 
-        
+
 
     text = event.message.text
     line_bot_api.push_message(developer_id,
@@ -120,11 +120,13 @@ def handle_message(event):
         df3.to_csv("text.csv")
         print(df)
 
-
+    print("######",text)
     # 完全一致調査
     df_out = df[(df["input"]==text)]
     ## 完全一致があったら
     if not df_out.empty:
+        print("###0###")
+        print(df_out)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=list(df_out.sample()["output"])[0]))
@@ -138,11 +140,14 @@ def handle_message(event):
             if row.input in text:
                 text_list.append(row.output)
         if text_list:
+            print("###1###")
+            print(text_list)
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=random.choice(text_list)))
             #print(random.choice(text_list))
         else:
+            print("###2###")
             df_out = df[(df["option"]==0)]
             line_bot_api.reply_message(
                 event.reply_token,
