@@ -41,7 +41,8 @@ line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)  # アクセストークンを�
 handler = WebhookHandler(CHANNEL_SECRET)  # Channel Secretを入れてください
 developer_id = DEVELOPER_ID  # あなたのUser IDを入れてください
 
-sawabe_list = glob.glob("sawabe/*")
+sawabe_list = glob.glob("static/sawabe/*")
+print("#E####",sawabe_list)
 # ユーザから送信された画像を保存するディレクトリを作成
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 try:
