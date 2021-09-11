@@ -160,8 +160,8 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 ImageSendMessage(
-                    original_content_url = sawabe_image,
-                    preview_image_url = sawabe_image))
+                    original_content_url = f"https://takowasa-test.herokuapp.com/{sawabe_image}",
+                    preview_image_url = f"https://takowasa-test.herokuapp.com/{sawabe_image}"))
             
             #print(list(df_out.sample()["output"])[0])
     
