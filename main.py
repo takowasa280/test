@@ -154,9 +154,11 @@ def handle_message(event):
             print("###2###")
             print(sawabe_image)
             df_out = df[(df["option"]==0)]
+            """
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=list(df_out.sample()["output"])[0]))
+            """
             sawabe_image2 = f"https://raw.githubusercontent.com/takowasa280/test/chatbot9/{sawabe_image}"
             #f"https://github.com/takowasa280/test/blob/chatbot9/{sawabe_image}"
             #f"https://test.herokuapp.com/{sawabe_image}" #f"https://takowasa-test.herokuapp.com/{sawabe_image}"
