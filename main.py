@@ -154,10 +154,12 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=list(df_out.sample()["output"])[0]))
+            line_bot_api.reply_message(
+                event.reply_token,
                 ImageSendMessage(
                     original_content_url = random.choice(sawabe_list),
-                    preview_image_url = random.choice(sawabe_list))
-                print(random.choice(sawabe_list))
+                    preview_image_url = random.choice(sawabe_list)))
+            print(random.choice(sawabe_list))
             #print(list(df_out.sample()["output"])[0])
     
     """
