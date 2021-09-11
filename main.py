@@ -149,6 +149,7 @@ def handle_message(event):
                 TextSendMessage(text=random.choice(text_list)))
             #print(random.choice(text_list))
         else:
+            sawabe_image = random.choice(sawabe_list)
             print("###2###")
             df_out = df[(df["option"]==0)]
             line_bot_api.reply_message(
@@ -157,8 +158,8 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 ImageSendMessage(
-                    original_content_url = random.choice(sawabe_list),
-                    preview_image_url = random.choice(sawabe_list)))
+                    original_content_url = sawabe_image,
+                    preview_image_url = sawabe_image))
             print(random.choice(sawabe_list))
             #print(list(df_out.sample()["output"])[0])
     
