@@ -204,6 +204,17 @@ def handle_message(event):
 model = load_model('my_model.h5') # 学習済みモデルをロードする
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_content_message(event):
+    message_id = event.message.id
+
+    # message_idから画像のバイナリデータを取得
+    message_content = line_bot_api.get_message_content(message_id)
+
+    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as f:
+        # バイナリを1024バイトずつ書き込む
+        for chunk in message_content.iter_content():
+            f.write(chunk)
+
+    """
     print("----3----")
     print(event.message.id)
     print(event.message.type)
@@ -235,6 +246,7 @@ def handle_content_message(event):
     pred_answer = "これは" + class_label[predicted] + "だねぇ"
 
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text= pred_answer))
+    """
 
 # フォローイベント時の処理
 @handler.add(FollowEvent)
