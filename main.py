@@ -44,6 +44,7 @@ developer_id = DEVELOPER_ID  # あなたのUser IDを入れてください
 
 sawabe_list = glob.glob("static/images/*")
 print("#E####",sawabe_list)
+
 # ユーザから送信された画像を保存するディレクトリを作成
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 try:
@@ -210,7 +211,7 @@ def handle_content_message(event):
     # message_idから画像のバイナリデータを取得
     message_content = line_bot_api.get_message_content(message_id)
 
-    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as f:
+    with open(Path(f"static/a/{message_id}.jpg").absolute(), "wb") as f:
         # バイナリを1024バイトずつ書き込む
         for chunk in message_content.iter_content():
             f.write(chunk)
