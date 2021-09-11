@@ -170,6 +170,13 @@ def handle_message(event):
         ImageSendMessage(
             original_content_url = sawabe_image2,
             preview_image_url = sawabe_image2,)])
+    line_bot_api.push_message(
+        developer_id,
+        [TextSendMessage(text=text)
+        TextSendMessage(text=out_text),
+        ImageSendMessage(
+            original_content_url = sawabe_image2,
+            preview_image_url = sawabe_image2,)])
     """
     if text == 'おはよう':
         line_bot_api.reply_message(
