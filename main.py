@@ -113,6 +113,7 @@ def handle_message(event):
         TextSendMessage(text=text))
 
     df = pd.read_csv("text.csv")
+    df.to_csv("a.csv")
     ### 言葉を覚える ###
     if text == '言葉覚えて':
         line_bot_api.reply_message(
