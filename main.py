@@ -165,6 +165,7 @@ def handle_message(event):
             print(sawabe_image2)
             line_bot_api.reply_message(
                 event.reply_token,
+                TextSendMessage(text=list(df_out.sample()["output"])[0]),
                 ImageSendMessage(
                     original_content_url = sawabe_image2,
                     preview_image_url = sawabe_image2,))
