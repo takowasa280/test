@@ -151,6 +151,7 @@ def handle_message(event):
         else:
             sawabe_image = random.choice(sawabe_list)
             print("###2###")
+            print(sawabe_image)
             df_out = df[(df["option"]==0)]
             line_bot_api.reply_message(
                 event.reply_token,
