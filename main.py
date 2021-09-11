@@ -163,7 +163,7 @@ def handle_message(event):
                 event.reply_token,
                 ImageSendMessage(
                     original_content_url = sawabe_image2,
-                    preview_image_url = sawabe_image2))
+                    preview_image_url = sawabe_image2,))
             
             #print(list(df_out.sample()["output"])[0])
     
