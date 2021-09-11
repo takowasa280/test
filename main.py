@@ -111,8 +111,7 @@ def handle_message(event):
 
 
     text = event.message.text
-    line_bot_api.push_message(developer_id,
-        TextSendMessage(text=text))
+
 
     df = pd.read_csv("text.csv")
     df.to_csv("a.csv")
@@ -133,9 +132,8 @@ def handle_message(event):
     if not df_out.empty:
         print("###0###")
         print(df_out)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=list(df_out.sample()["output"])[0]))
+        out_text = list(df_out.sample()["output"])[0]
+        
         #print(list(df_out.sample()["output"])[0])
     ## 完全一致がなかったら
     else:
@@ -148,9 +146,7 @@ def handle_message(event):
         if text_list:
             print("###1###")
             print(text_list)
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=random.choice(text_list)))
+            out_text = random.choice(text_list)
             #print(random.choice(text_list))
         else:
             sawabe_image = random.choice(sawabe_list)
@@ -166,15 +162,14 @@ def handle_message(event):
             #f"https://github.com/takowasa280/test/blob/chatbot9/{sawabe_image}"
             #f"https://test.herokuapp.com/{sawabe_image}" #f"https://takowasa-test.herokuapp.com/{sawabe_image}"
             print(sawabe_image2)
-            line_bot_api.reply_message(
-                event.reply_token,
-                [TextSendMessage(text=list(df_out.sample()["output"])[0]),
-                ImageSendMessage(
-                    original_content_url = sawabe_image2,
-                    preview_image_url = sawabe_image2,)])
-            
+            out_text = list(df_out.sample()["output"])[0]
             #print(list(df_out.sample()["output"])[0])
-    
+    line_bot_api.reply_message(
+        event.reply_token,
+        [TextSendMessage(text=out_text),
+        ImageSendMessage(
+            original_content_url = sawabe_image2,
+            preview_image_url = sawabe_image2,)])
     """
     if text == 'おはよう':
         line_bot_api.reply_message(
