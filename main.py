@@ -12,7 +12,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, ImageMessage, TextSendMessage, FollowEvent
+    MessageEvent, TextMessage, ImageMessage, TextSendMessage, ImageSendMessage, FollowEvent
 )
 from tensorflow.keras.models import Sequential, load_model
 
