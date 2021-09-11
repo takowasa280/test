@@ -1,5 +1,5 @@
 # main.py
-import os,random,sys
+import os,random,sys,glob
 import json
 import errno
 import tempfile
@@ -41,7 +41,7 @@ line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)  # アクセストークンを�
 handler = WebhookHandler(CHANNEL_SECRET)  # Channel Secretを入れてください
 developer_id = DEVELOPER_ID  # あなたのUser IDを入れてください
 
-
+sawabe_list = glob.glob("sawabe/*")
 # ユーザから送信された画像を保存するディレクトリを作成
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 try:
@@ -154,6 +154,10 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=list(df_out.sample()["output"])[0]))
+                ImageSendMessage(
+                    original_content_url = random.choice(sawabe_list),
+                    preview_image_url = random.choice(sawabe_list))
+                print(random.choice(sawabe_list))
             #print(list(df_out.sample()["output"])[0])
     
     """
