@@ -172,7 +172,7 @@ def handle_message(event):
             preview_image_url = sawabe_image2,)])
     line_bot_api.push_message(
         developer_id,
-        [TextSendMessage(text=text)
+        [TextSendMessage(text=text),
         TextSendMessage(text=out_text),
         ImageSendMessage(
             original_content_url = sawabe_image2,
