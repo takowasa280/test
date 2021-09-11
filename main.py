@@ -156,7 +156,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=list(df_out.sample()["output"])[0]))
-            sawabe_image2 = f"https://takowasa-test.herokuapp.com/{sawabe_image}"
+            sawabe_image2 = f"https://test.herokuapp.com/{sawabe_image}" #f"https://takowasa-test.herokuapp.com/{sawabe_image}"
             print(sawabe_image2)
             line_bot_api.reply_message(
                 event.reply_token,
